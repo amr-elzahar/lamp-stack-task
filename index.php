@@ -1,9 +1,14 @@
 <?php
-//Connection variables
-$servername = "localhost";
-$username = "atw";
-$password = "111";
-$dbname = "atw-task";
+require_once realpath(__DIR__ . '/vendor/autoload.php');
+
+// Looing for .env at the root directory
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+$servername = getenv("DB_HOST");
+$username = getenv("DB_USER");
+$password = getenv("DB_PASS");
+$dbname = getenv("DB_NAME");
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
